@@ -1,2 +1,0 @@
-# workingfiles
-DMG working files 
