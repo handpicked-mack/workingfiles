@@ -41,16 +41,17 @@
                                         </ul>
     
                                         </section>
-								<section> <!-- start of calculator section-->   
+						<section> <!-- start of calculator section-->   
 								<!--include the script for calculation-->
-								<script type="text/javascript">
-									var total_items = 4;
+							<script type="text/javascript">
+									var total_items = 20;//the number of items
 									function CalculateItemsValue() {
 										var total_wine = 0;
 										var grand_total=0;
 										var discount=0;
 										var total_qty=0;
 										var delivery_fee=0;
+										var dis_rate=document.getElementById("disrate").value;
 
 										
 										for (i=1; i<=total_items; i++) {
@@ -61,19 +62,27 @@
 											} else {
 												total_wine = total_wine + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
 												total_qty = total_qty + parseInt(itemID.value);
-												
 											}
 												}
+												// Delivery charges calculation
+												if (total_qty>=66){
+													delivery_fee=0;
+												}else if(total_qty>=25){
+													delivery_fee=total_qty*1;
+												}else{
+													delivery_fee=total_qty*2;
+												}
+												//discount and grandtotal
+												discount=(-(dis_rate/100)*total_wine);
+												grand_total=total_wine+delivery_fee+discount;
 												
 										document.getElementById("ItemsTotal").innerHTML = "$" + total_wine;
-										//document.getElementById("TotalDiscount").innerHTML = "$" + discount;
-										//document.getElementById("DeliveryFee").innerHTML = "$" + delivery_fee;
+										document.getElementById("DeliveryFee").innerHTML = "$" + delivery_fee;
 										document.getElementById("GrandTotal").innerHTML = "$" + grand_total;
-										
-										
-										
+										document.getElementById("TotalBottles").innerHTML =total_qty;
+										document.getElementById("TotalDiscount").innerHTML = "$" + discount;
 									}
-									</script>
+							</script>
 									<!-- the html code section-->
 									<table class="table table-condensed table-hover" id="myTable">
 											<thead>
@@ -94,64 +103,167 @@
 												</tr>
 
 												<tr>
-												<td>2012 Collection Coonawarra Cabernet Sauvignon</td>
-												<td>A$119.00</td>
-												<td><input data-price="119" name="qnt_2" type="text" 
-													id="qnt_2" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+													<td>2012 Collection Coonawarra Cabernet Sauvignon</td>
+													<td>A$119.00</td>
+													<td><input data-price="119" name="qnt_2" type="text" 
+														id="qnt_2" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 												</tr>	
 												<tr>
-														<td>2012 Collection Margaret River Cabernet Merlot</td>
-														<td>A$119.00</td>
-														<td><input data-price="119" name="qnt_3" type="text" 
-															id="qnt_3" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+													<td>2012 Collection Margaret River Cabernet Merlot</td>
+													<td>A$119.00</td>
+													<td><input data-price="119" name="qnt_3" type="text" 
+														id="qnt_3" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 												</tr>				
 												<tr>
-														<td>2015 Collection Tasmania Pinot Noir</td>
+													<td>2015 Collection Tasmania Pinot Noir</td>
+													<td>A$99.00</td>
+													<td><input data-price="99" name="qnt_4" type="text" 
+														id="qnt_4" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+												</tr>
+												<tr>
+														<td>2015 Collection Mornington Peninsula Pinot Noir</td>
 														<td>A$99.00</td>
-														<td><input data-price="99" name="qnt_4" type="text" 
-															id="qnt_4" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
-												</tr>		
+														<td><input data-price="99" name="qnt_5" type="text" 
+															id="qnt_5" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+													</tr>
+													<tr>
+															<td>2014 Collection Yarra Valley Pinot Noir</td>
+															<td>A$99.00</td>
+															<td><input data-price="99" name="qnt_6" type="text" 
+																id="qnt_6" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+														<tr>
+															<td>2013 Collection Central Otago Pinot Noir</td>
+															<td>A$99.00</td>
+															<td><input data-price="99" name="qnt_7" type="text" 
+																id="qnt_7" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>						
+														<tr>
+																<td>2015 Barossa Valley Shiraz</td>
+																<td>A$39.90</td>
+																<td><input data-price="39.90" name="qnt_8" type="text" 
+																	id="qnt_8" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+														<tr>
+															<td>2014 Coonawarra Cabernet Sauvignon</td>
+															<td>A$39.90</td>
+															<td><input data-price="39.90" name="qnt_9" type="text" 
+																		id="qnt_9" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+														<tr>
+															<td>2016 SEA Cabernet Merlot</td>
+															<td>A$34.90</td>
+															<td><input data-price="34.90" name="qnt_10" type="text" 
+																		id="qnt_10" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+														<tr>
+															<td>2012 Margaret River Cabernet Merlot</td>
+															<td>A$49.90</td>
+															<td><input data-price="49.90" name="qnt_11" type="text" 
+																		id="qnt_11" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+														<tr>
+																<td>2014 Margaret River Cabernet Sauvignon</td>
+																<td>A$39.90</td>
+																<td><input data-price="39.90" name="qnt_12" type="text" 
+																			id="qnt_12" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>
+															<tr>
+																<td>2015 Hilltops Shiraz</td>
+																<td>A$39.90</td>
+																<td><input data-price="39.90" name="qnt_13" type="text" 
+																			id="qnt_13" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>
+															<tr>
+																<td>2012 Heathcote Shiraz</td>
+																<td>A$39.90</td>
+																<td><input data-price="39.90" name="qnt_14" type="text" 
+																			id="qnt_14" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>
+															<tr>
+																	<td>2016 Yarra Valley Pinot Noir</td>
+																	<td>A$49.90</td>
+																	<td><input data-price="49.90" name="qnt_15" type="text" 
+																				id="qnt_15" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																</tr>
+															<tr>
+																<td>2015 Yarra Valley Chardonnay</td>
+																<td>A$39.90</td>
+																<td><input data-price="39.90" name="qnt_16" type="text" 
+																			id="qnt_16" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>
+															
+															<tr>
+																	<td>2016 Marlborough Sauvignon Blanc</td>
+																	<td>A$39.90</td>
+																	<td><input data-price="39.90" name="qnt_17" type="text" 
+																				id="qnt_17" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																</tr>
+															
+																<tr>
+																		<td>2016 Yarra Valley Rosé</td>
+																		<td>A$44.90</td>
+																		<td><input data-price="44.90" name="qnt_18" type="text" 
+																					id="qnt_18" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>
+															<tr>
+																	<td>2016 Piedmont Moscato</td>
+																	<td>A$34.90</td>
+																	<td><input data-price="34.90" name="qnt_19" type="text" 
+																				id="qnt_19" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>
+															<tr>
+																	<td>2013 Eden Valley Riesling</td>
+																	<td>A$49.90</td>
+																	<td><input data-price="49.90" name="qnt_20" type="text" 
+																				id="qnt_20" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>			
+																
+																					
+
+
 
 											</tbody>
+											<!--specify % of discount off-->
+										<tbody>
+												<tr>
+													<td align="left"></td>
+													<td align="left">% of discount off</td>
+													<td align="right" bgcolor="#FF0000"><input name="disrate" type="text" size="5"
+															id="disrate" value="5" size="4" onkeyup="CalculateItemsValue()"/></td>	
+												</tr>
 
-											<!--<tr>
-													<td>% Discount</td>
-													
-													<td><input name="discountrate" type="text" 
-														id="discountrate" value="0" size="6" onkeyup="CalculateItemsValue()"/></td>
-											</tr>-->
-
-											<tr>
+												<tr>
 													<td bgcolor="#CCCCCC">&nbsp;</td>
 													<td align="right" bgcolor="#CCCCCC"><strong>Wine Total:</strong></td>
 													<td bgcolor="#CCCCCC"><strong><div id="ItemsTotal">$0</div></strong></td>
 												</tr>
-												<!--
+												
 												<tr>
-														<td bgcolor="#CCCCCC">&nbsp;</td>
-														<td align="right" bgcolor="#CCCCCC"><strong>Discount:</strong></td>
-														<td bgcolor="#CCCCCC"><strong><div id="TotalDiscount">$0</div></strong></td>
-													</tr>-->
+													<td bgcolor="#CCCCCC">&nbsp;</td>
+													<td align="right" bgcolor="#CCCCCC"><strong>Discount:</strong></td>
+													<td bgcolor="#CCCCCC"><strong><div id="TotalDiscount">$0</div></strong></td>
+												</tr>
 
-												<!--<tr>
-														<td bgcolor="#CCCCCC">&nbsp;</td>
-														<td align="right" bgcolor="#CCCCCC"><strong>Delivery Charges:</strong></td>
-														<td bgcolor="#CCCCCC"><strong><div id="DeliveryFee">$0</div></strong></td>
-													</tr>-->
+												<tr>
+													<td bgcolor="#CCCCCC">&nbsp;</td>
+													<td align="right" bgcolor="#CCCCCC"><strong>Delivery Charges:</strong></td>
+													<td bgcolor="#CCCCCC"><strong><div id="DeliveryFee">$0</div></strong></td>
+												</tr>
 
-													<tr>
-															<td bgcolor="#CCCCCC">&nbsp;</td>
-															<td align="right" bgcolor="#CCCCCC"><strong>Grand Total:</strong></td>
-															<td bgcolor="#CCCCCC"><strong><div id="GrandTotal">$0</div></strong></td>
-														</tr>	
-
-										
-											</table>
-
-									
-                      
-					
-                      		</section>  <!--end of the section-->
+												<tr>
+													<td bgcolor="#CCCCCC">&nbsp;</td>
+													<td align="right" bgcolor="#CCCCCC"><strong>Grand Total:</strong></td>
+													<td bgcolor="#CCCCCC"><strong><div id="GrandTotal">$0</div></strong></td>
+												</tr>	
+												<tr>
+													<td bgcolor="#CCCCCC">&nbsp;</td>
+													<td align="right" bgcolor="#CCCCCC"><strong>Total Bottles:</strong></td>
+													<td bgcolor="#CCCCCC"><strong><div id="TotalBottles">0</div></strong></td>
+												</tr>	
+										</tbody>
+									</table>
+                      	</section>  <!--end of the section-->
                     </div>
                 </div>
 						

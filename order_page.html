@@ -44,148 +44,231 @@
 									<span class="image main"><img src="images/HandpickedWines_chinahomedelivery_988px-340px.jpg" alt="" /></span>
 									
 									<h2>Handpicked Wines Home Delivery Range</h2>
-
-													<h4>Collection Range</h4>
-													<div class="table-wrapper">
-														<table>
-															<thead>
-																<tr>
-																	<th>Vintage</th>
-																	<th>Wines</th>
-																	<th>Price</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>2016</td>
-																	<td>Collection Barossa Valley Shiraz</td>
-																	<td>A$119.00</td>
-																</tr>
-																<tr>
-																	<td>2012</td>
-																	<td>Collection Coonawarra Cabernet Sauvignon</td>
-																	<td>A$119.00</td>
-																</tr>
-																<tr>
-																	<td>2012</td>
-																	<td>Collection Margaret River Cabernet Merlot</td>
-																	<td>A$119.00</td>
-																</tr>
-																<tr>
-																	<td>2015</td>
-																	<td>Collection Tasmania Pinot Noir</td>
+									<section> <!-- start of calculator section-->   
+										<!--include the script for calculation-->
+									<script type="text/javascript">
+											var total_items = 20;//the number of items
+											function CalculateItemsValue() {
+												var total_wine = 0;
+												var grand_total=0;
+												var discount=0;
+												var total_qty=0;
+												var delivery_fee=0;
+												var dis_rate=document.getElementById("disrate").value;
+		
+												
+												for (i=1; i<=total_items; i++) {
+													
+													itemID = document.getElementById("qnt_"+i);
+													if (typeof itemID === 'undefined' || itemID === null) {
+														alert("No such item - " + "qnt_"+i);
+													} else {
+														total_wine = total_wine + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
+														total_qty = total_qty + parseInt(itemID.value);
+													}
+														}
+														// Delivery charges calculation
+														if (total_qty>=66){
+															delivery_fee=0;
+														}else if(total_qty>=25){
+															delivery_fee=total_qty*1;
+														}else{
+															delivery_fee=total_qty*2;
+														}
+														//discount and grandtotal
+														discount=(-(dis_rate/100)*total_wine);
+														grand_total=total_wine+delivery_fee+discount;
+														
+												document.getElementById("ItemsTotal").innerHTML = "$" + total_wine;
+												document.getElementById("DeliveryFee").innerHTML = "$" + delivery_fee;
+												document.getElementById("GrandTotal").innerHTML = "$" + grand_total;
+												document.getElementById("TotalBottles").innerHTML =total_qty;
+												document.getElementById("TotalDiscount").innerHTML = "$" + discount;
+											}
+									</script>
+											<!-- the html code section-->
+											<table class="table table-condensed table-hover" id="myTable">
+													<thead>
+														<tr>
+															<th>Product</th>
+															<th class="text-right">Price ($)</th>
+															<th class="text-center">Bottles</th>
+															<!--<th class="text-center">Sub-Total</th>-->
+														</tr>
+													</thead>
+													<!-- table-->
+													<tbody class="body">
+														<tr>
+														<td>2016 Collection Barossa Valley Shiraz</td>
+														<td>A$119.00</td>
+														<td><input data-price="119" name="qnt_1" type="text" 
+															id="qnt_1" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+		
+														<tr>
+															<td>2012 Collection Coonawarra Cabernet Sauvignon</td>
+															<td>A$119.00</td>
+															<td><input data-price="119" name="qnt_2" type="text" 
+																id="qnt_2" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>	
+														<tr>
+															<td>2012 Collection Margaret River Cabernet Merlot</td>
+															<td>A$119.00</td>
+															<td><input data-price="119" name="qnt_3" type="text" 
+																id="qnt_3" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>				
+														<tr>
+															<td>2015 Collection Tasmania Pinot Noir</td>
+															<td>A$99.00</td>
+															<td><input data-price="99" name="qnt_4" type="text" 
+																id="qnt_4" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+														</tr>
+														<tr>
+																<td>2015 Collection Mornington Peninsula Pinot Noir</td>
+																<td>A$99.00</td>
+																<td><input data-price="99" name="qnt_5" type="text" 
+																	id="qnt_5" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+															</tr>
+															<tr>
+																	<td>2014 Collection Yarra Valley Pinot Noir</td>
 																	<td>A$99.00</td>
+																	<td><input data-price="99" name="qnt_6" type="text" 
+																		id="qnt_6" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 																</tr>
 																<tr>
-																	<td>2015</td>
-																	<td>Collection Mornington Peninsula Pinot Noir</td>
+																	<td>2013 Collection Central Otago Pinot Noir</td>
 																	<td>A$99.00</td>
+																	<td><input data-price="99" name="qnt_7" type="text" 
+																		id="qnt_7" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																</tr>						
+																<tr>
+																		<td>2015 Barossa Valley Shiraz</td>
+																		<td>A$39.90</td>
+																		<td><input data-price="39.90" name="qnt_8" type="text" 
+																			id="qnt_8" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 																</tr>
 																<tr>
-																	<td>2014</td>
-																	<td>Collection Yarra Valley Pinot Noir</td>
-																	<td>A$99.00</td>
-																</tr>
-																<tr>
-																	<td>2013</td>
-																	<td>Collection Central Otago Pinot Noir</td>
-																	<td>A$99.00</td>
-																</tr>
-															</tbody>
-															<tfoot>
-																<tr>
-																	<td colspan="2"></td>
-																	
-																</tr>
-															</tfoot>
-														</table>
-													</div>
-<h4>Regional Selection</h4>
-													<div class="table-wrapper">
-														<table>
-															<thead>
-																<tr>
-																	<th>Vintage</th>
-																	<th>Wines</th>
-																	<th>Price</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>2015</td>
-																	<td>Barossa Valley Shiraz</td>
+																	<td>2014 Coonawarra Cabernet Sauvignon</td>
 																	<td>A$39.90</td>
+																	<td><input data-price="39.90" name="qnt_9" type="text" 
+																				id="qnt_9" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 																</tr>
 																<tr>
-																	<td>2014</td>
-																	<td>Coonawarra Cabernet Sauvignon</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																	<td>2016</td>
-																	<td>SEA Cabernet Merlot</td>
+																	<td>2016 SEA Cabernet Merlot</td>
 																	<td>A$34.90</td>
+																	<td><input data-price="34.90" name="qnt_10" type="text" 
+																				id="qnt_10" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 																</tr>
 																<tr>
-																	<td>2012</td>
-																	<td>Margaret River Cabernet Merlot</td>
+																	<td>2012 Margaret River Cabernet Merlot</td>
 																	<td>A$49.90</td>
+																	<td><input data-price="49.90" name="qnt_11" type="text" 
+																				id="qnt_11" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
 																</tr>
 																<tr>
-																	<td>2014</td>
-																	<td>Margaret River Cabernet Sauvignon</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																	<td>2015</td>
-																	<td>Hilltops Shiraz</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																	<td>2012</td>
-																	<td>Heathcote Shiraz</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																	<td>2016</td>
-																	<td>Yarra Valley Pinot Noir</td>
-																	<td>A$49.90</td>
-																</tr>
-																<tr>
-																	<td>2015</td>
-																	<td>Yarra Valley Chardonnay</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																	<td>2013</td>
-																	<td>Margaret River Sauvignon Blanc Semillon</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																	<td>2016</td>
-																	<td>Marlborough Sauvignon Blanc</td>
-																	<td>A$39.90</td>
-																</tr>
-																<tr>
-																<tr>
-																	<td>2016</td>
-																	<td>Yarra Valley Rosé</td>
-																	<td>A$44.90</td>
-																</tr>
-																<tr>
-																	<td>2016</td>
-																	<td>Piedmont Moscato</td>
-																	<td>A$34.90</td>
-																</tr>
-															</tbody>
-															<tfoot>
-																<tr>
-																	<td colspan="2"></td>
+																		<td>2014 Margaret River Cabernet Sauvignon</td>
+																		<td>A$39.90</td>
+																		<td><input data-price="39.90" name="qnt_12" type="text" 
+																					id="qnt_12" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>
+																	<tr>
+																		<td>2015 Hilltops Shiraz</td>
+																		<td>A$39.90</td>
+																		<td><input data-price="39.90" name="qnt_13" type="text" 
+																					id="qnt_13" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>
+																	<tr>
+																		<td>2012 Heathcote Shiraz</td>
+																		<td>A$39.90</td>
+																		<td><input data-price="39.90" name="qnt_14" type="text" 
+																					id="qnt_14" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>
+																	<tr>
+																			<td>2016 Yarra Valley Pinot Noir</td>
+																			<td>A$49.90</td>
+																			<td><input data-price="49.90" name="qnt_15" type="text" 
+																						id="qnt_15" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																		</tr>
+																	<tr>
+																		<td>2015 Yarra Valley Chardonnay</td>
+																		<td>A$39.90</td>
+																		<td><input data-price="39.90" name="qnt_16" type="text" 
+																					id="qnt_16" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>
 																	
-																</tr>
-															</tfoot>
-														</table>
-													</div>
+																	<tr>
+																			<td>2016 Marlborough Sauvignon Blanc</td>
+																			<td>A$39.90</td>
+																			<td><input data-price="39.90" name="qnt_17" type="text" 
+																						id="qnt_17" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																		</tr>
+																	
+																		<tr>
+																				<td>2016 Yarra Valley Rosé</td>
+																				<td>A$44.90</td>
+																				<td><input data-price="44.90" name="qnt_18" type="text" 
+																							id="qnt_18" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																			</tr>
+																	<tr>
+																			<td>2016 Piedmont Moscato</td>
+																			<td>A$34.90</td>
+																			<td><input data-price="34.90" name="qnt_19" type="text" 
+																						id="qnt_19" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>
+																	<tr>
+																			<td>2013 Eden Valley Riesling</td>
+																			<td>A$49.90</td>
+																			<td><input data-price="49.90" name="qnt_20" type="text" 
+																						id="qnt_20" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+																	</tr>			
+																		
+																							
+		
+		
+		
+													</tbody>
+													<!--specify % of discount off-->
+												<tbody>
+														<tr>
+															<td align="left"></td>
+															<td align="left">% of discount off</td>
+															<td align="right" bgcolor="#FF0000"><input name="disrate" type="text" size="5"
+																	id="disrate" value="0" size="4" onkeyup="CalculateItemsValue()"/></td>	
+														</tr>
+		
+														<tr>
+															<td bgcolor="#CCCCCC">&nbsp;</td>
+															<td align="right" bgcolor="#CCCCCC"><strong>Wine Total:</strong></td>
+															<td bgcolor="#CCCCCC"><strong><div id="ItemsTotal">$0</div></strong></td>
+														</tr>
+														
+														<tr>
+															<td bgcolor="#CCCCCC">&nbsp;</td>
+															<td align="right" bgcolor="#CCCCCC"><strong>Discount:</strong></td>
+															<td bgcolor="#CCCCCC"><strong><div id="TotalDiscount">$0</div></strong></td>
+														</tr>
+		
+														<tr>
+															<td bgcolor="#CCCCCC">&nbsp;</td>
+															<td align="right" bgcolor="#CCCCCC"><strong>Delivery Charges:</strong></td>
+															<td bgcolor="#CCCCCC"><strong><div id="DeliveryFee">$0</div></strong></td>
+														</tr>
+		
+														<tr>
+															<td bgcolor="#CCCCCC">&nbsp;</td>
+															<td align="right" bgcolor="#CCCCCC"><strong>Grand Total:</strong></td>
+															<td bgcolor="#CCCCCC"><strong><div id="GrandTotal">$0</div></strong></td>
+														</tr>	
+														<tr>
+															<td bgcolor="#CCCCCC">&nbsp;</td>
+															<td align="right" bgcolor="#CCCCCC"><strong>Total Bottles:</strong></td>
+															<td bgcolor="#CCCCCC"><strong><div id="TotalBottles">0</div></strong></td>
+														</tr>	
+												</tbody>
+											</table>
+								  </section>  <!--end of the section-->
+													
+							
 									
 									<p>If you are an employee of Handpicked Wines, please place your customer's order via the form provided below.
 									<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdWRObMFClBAJfbIyzh6dHLkEll6y4X93kXpGSkTist1Gjk8w/viewform?embedded=true" width="1040" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
