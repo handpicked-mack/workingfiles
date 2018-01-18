@@ -19,69 +19,142 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-
-							<!-- Header -->
-								<header id="header">
+                <!-- Main -->
+                <div id="main">
+					<div class="inner">
+                            <header id="header">
 									<a href="index.html" class="logo"><strong>Handpicked Wines</strong> by Mack Q</a>
 									<ul class="icons">
 										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
 									</ul>
-								</header>
-
-							<!-- Content -->
+                                </header>
+                        <!-- Content -->
 								<section>
-									<header class="main">
-										<h1 align="center">DMG Fine Wine </h1></br><h2 align="center">Sydney Team Roster</h2>
-									</header>
-									<!--
-									<span class="image main"><img src="images/JH_awards_1.PNG" alt="" /></span>-->
-									
-									<!-- 
-									insert the timesheet-->
-                            <iframe width="1200" height="370" frameborder="0" scrolling="no" align="center" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZKb6VyDHu0YEfphENyizgmgJaOmxQ6GJY4wkdyZBEkhOYC3a5H5Ucv18hAx8JRLUvOdGx3CadyUnN/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
-                                <!--
-									<iframe width="1000" height="369" frameborder="0" scrolling="no" 
-									src="https://onedrive.live.com/embed?resid=7AA3884B3230B5B2%21105&authkey=%21AGR-lLW03wxeij8&em=2&wdAllowInteractivity=False&ActiveCell='Current'!B7&Item='Current'!A1%3AH12&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True" align="centre"></iframe>-->
+                                       
+                                        <header class="main">
+                                            <h1 align="center">Order Calculator </h1></br><h2 align="center">lol</h2>
+                                        </header> <!--
+                                        <ul class="actions" align="center">
+                                            <li><a href="#" class="button">Log in</a></li>-->
+                                        </ul>
+    
+                                        </section>
+								<section> <!-- start of calculator section-->   
+								<!--include the script for calculation-->
+								<script type="text/javascript">
+									var total_items = 4;
+									function CalculateItemsValue() {
+										var total_wine = 0;
+										var grand_total=0;
+										var discount=0;
+										var total_qty=0;
+										var delivery_fee=0;
 
-				
-				
-				
-				
-				
-				
-									<!--
-									<p>If you are an employee of Handpicked Wines, please place your customer's order via the form provided below.
-									<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdWRObMFClBAJfbIyzh6dHLkEll6y4X93kXpGSkTist1Gjk8w/viewform?embedded=true" width="1040" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-									-->
-									<!-- Section -->
-								<section>
-									
-									<header class="major">
-									
-										<h2>Upload Home Delivery Orders</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<!--<a href="#" class="image"><img src="images/dufry-dutyfree-logo.jpg" alt="" /></a>-->
-                                            
-											<h3>Heinemann Duty Free</h3>
-											<p>Click the button below to upload Sydney airport orders</p>
-											<ul class="actions">
-												<li><a href="https://script.google.com/macros/s/AKfycbw2pKsfNtJDzIHKPf4YZkRho3kbMKWc56HJz8v3PO1KOIfV_0fr/exec" class="button">Upload</a></li>
-											</ul>
-										</article>
 										
-								</section>
+										for (i=1; i<=total_items; i++) {
+											
+											itemID = document.getElementById("qnt_"+i);
+											if (typeof itemID === 'undefined' || itemID === null) {
+												alert("No such item - " + "qnt_"+i);
+											} else {
+												total_wine = total_wine + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
+												total_qty = total_qty + parseInt(itemID.value);
+												
+											}
+												}
+												
+										document.getElementById("ItemsTotal").innerHTML = "$" + total_wine;
+										//document.getElementById("TotalDiscount").innerHTML = "$" + discount;
+										//document.getElementById("DeliveryFee").innerHTML = "$" + delivery_fee;
+										document.getElementById("GrandTotal").innerHTML = "$" + grand_total;
+										
+										
+										
+									}
+									</script>
+									<!-- the html code section-->
+									<table class="table table-condensed table-hover" id="myTable">
+											<thead>
+												<tr>
+													<th>Product</th>
+													<th class="text-right">Price ($)</th>
+													<th class="text-center">Bottles</th>
+													<!--<th class="text-center">Sub-Total</th>-->
+												</tr>
+											</thead>
+											<!-- table-->
+											<tbody class="body">
+												<tr>
+												<td>2016 Collection Barossa Valley Shiraz</td>
+												<td>A$119.00</td>
+												<td><input data-price="119" name="qnt_1" type="text" 
+													id="qnt_1" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+												</tr>
 
-						</div>
-					</div>
+												<tr>
+												<td>2012 Collection Coonawarra Cabernet Sauvignon</td>
+												<td>A$119.00</td>
+												<td><input data-price="119" name="qnt_2" type="text" 
+													id="qnt_2" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+												</tr>	
+												<tr>
+														<td>2012 Collection Margaret River Cabernet Merlot</td>
+														<td>A$119.00</td>
+														<td><input data-price="119" name="qnt_3" type="text" 
+															id="qnt_3" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+												</tr>				
+												<tr>
+														<td>2015 Collection Tasmania Pinot Noir</td>
+														<td>A$99.00</td>
+														<td><input data-price="99" name="qnt_4" type="text" 
+															id="qnt_4" value="0" size="3" onkeyup="CalculateItemsValue()" /></td>
+												</tr>		
+
+											</tbody>
+
+											<!--<tr>
+													<td>% Discount</td>
+													
+													<td><input name="discountrate" type="text" 
+														id="discountrate" value="0" size="6" onkeyup="CalculateItemsValue()"/></td>
+											</tr>-->
+
+											<tr>
+													<td bgcolor="#CCCCCC">&nbsp;</td>
+													<td align="right" bgcolor="#CCCCCC"><strong>Wine Total:</strong></td>
+													<td bgcolor="#CCCCCC"><strong><div id="ItemsTotal">$0</div></strong></td>
+												</tr>
+												<!--
+												<tr>
+														<td bgcolor="#CCCCCC">&nbsp;</td>
+														<td align="right" bgcolor="#CCCCCC"><strong>Discount:</strong></td>
+														<td bgcolor="#CCCCCC"><strong><div id="TotalDiscount">$0</div></strong></td>
+													</tr>-->
+
+												<!--<tr>
+														<td bgcolor="#CCCCCC">&nbsp;</td>
+														<td align="right" bgcolor="#CCCCCC"><strong>Delivery Charges:</strong></td>
+														<td bgcolor="#CCCCCC"><strong><div id="DeliveryFee">$0</div></strong></td>
+													</tr>-->
+
+													<tr>
+															<td bgcolor="#CCCCCC">&nbsp;</td>
+															<td align="right" bgcolor="#CCCCCC"><strong>Grand Total:</strong></td>
+															<td bgcolor="#CCCCCC"><strong><div id="GrandTotal">$0</div></strong></td>
+														</tr>	
+
+										
+											</table>
+
+									
+                      
+					
+                      		</section>  <!--end of the section-->
+                    </div>
+                </div>
+						
 
 				<!-- Sidebar -->
 					<div id="sidebar">
