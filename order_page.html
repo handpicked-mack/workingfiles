@@ -63,7 +63,7 @@
 													if (typeof itemID === 'undefined' || itemID === null) {
 														alert("No such item - " + "qnt_"+i);
 													} else {
-														total_wine = total_wine + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
+														total_wine = total_wine + parseInt(itemID.value) * parseFloat(itemID.getAttribute("data-price"));
 														total_qty = total_qty + parseInt(itemID.value);
 													}
 														}

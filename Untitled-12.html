@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+<head>
+<base target="_top">
+</head>
+<body>
+<h1 align="center"> Handpicked Wines @Heinemann</h1>
+<div align="center">
+<p><img src="http://cdn3.bigcommerce.com/s-j6p0tyv3dx/images/stencil/319x42/logo_1466743238__62049.png"></p>
+<p><img src="http://www.berlin-airport.de/_images/reisende/shops-und-gastronomie/shops-a-z/logos/heinemann-duty-free-logo-280px.jpg"></p>
+
+</div>
+    <section align="center">
+    <h3 align="center"> Upload Your CHD Order Using Portal Below</h3>
+    </section>
+	<form id="uploaderForm">
+		<div align="center">
+            <p>Staff Name: 
+			<input type="text" name="staffName" id="staffName"
+				placeholder="Your Name">
+            </p>
+		</div>
+        
+		<div align="center">
+            <p>Order Date:
+			<input type="text" name="orderDate" id="orderDate"
+				placeholder="YYYYMMDD">
+            </p>
+		</div>
+		<div align="center">
+			<input type="file" name="filesToUpload" id="filesToUpload" multiple>
+            
+		</div>
+        <div align="center">
+       
+        </div>
+        <div align="center">
+        <input type="button" value="Upload" onclick="uploadFiles()">
+        </div>
+	</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="output"></div>
+
+	<script>
+		var rootFolderId = '1uSW2Q1mQFjNBfBuVayU7ztGeFzDK6dTd';
+		var numUploads = {};
+		numUploads.done = 0;
+		numUploads.total = 0;
+		// Upload the files into a folder in drive
+		// This is set to send them all to one folder (specificed in the .gs file)
+		function uploadFiles() {
+			var allFiles = document.getElementById('filesToUpload').files;
+			var staffName = document.getElementById('staffName').value;
+			if (!staffName) {
+				window.alert('Missing Staff name!');
+			}
+			var orderDate = document.getElementById('orderDate').value;
+			if (!orderDate) {
+				window.alert('Missing Order Date!');
+			}
+			var folderName = orderDate + '_' +'HEM';
+			if (allFiles.length == 0) {
+				window.alert('No file selected!');
+			} else {
+				numUploads.total = allFiles.length;
+				google.script.run.withSuccessHandler(function(r) {
+					// send files after the folder is created...
+					for (var i = 0; i < allFiles.length; i++) {
+						// Send each file at a time
+						uploadFile(allFiles[i], r.folderId);
+					}
+				}).createFolder(rootFolderId, folderName);
+			}
+		}
+		
+        function uploadFile(file, folderId) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var content = reader.result;
+				document.getElementById('output').innerHTML = 'uploading '
+						+ file.name + '...';
+				//window.alert('uploading ' + file.name + '...');				
+				google.script.run.withSuccessHandler(onFileUploaded)
+						.uploadFile(content, file.name, folderId);
+                        
+			}
+			reader.readAsDataURL(file);
+		}
+		function onFileUploaded(r) {
+			numUploads.done++;
+			document.getElementById('output').innerHTML = 'uploaded '
+					+ r.fileName + ' (' + numUploads.done + '/'
+					+ numUploads.total + ' files).';
+			if (numUploads.done == numUploads.total) {
+				document.getElementById('output').innerHTML = 'All of the '
+						+ numUploads.total + ' files are uploaded';
+				numUploads.done = 0;
+			}
+		}
+	</script>
+</body>
+</html>
